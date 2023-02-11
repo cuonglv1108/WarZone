@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : MapLoader.h
+// Author      : Arsany Fahmy
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Comp 345 Ass 1
+//============================================================================
+
 #ifndef MAPLOADER.H
 #define MAPLOADER.H
 #include <iostream>

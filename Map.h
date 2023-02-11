@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : Map.h
+// Author      : Arsany Fahmy
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Comp 345 Ass 1
+//============================================================================
+
 #ifndef MAP.H
 #define MAP.H
 #include <iostream>
@@ -21,7 +29,6 @@ class Map
 		std::vector<Territory> *adjacentTerritories;
 		std::vector<Territory> *territoriesInContinents;
 
-		void traverse(int u, bool visited[]);
 
 	public:
 
@@ -38,7 +45,7 @@ class Map
 		//Methods related to the graph representation of the map
 		void initializeAdjacentTerritoriesGraph();
 		void initializeTerritoriesInContinentsGraph();
-		void addAdjacentTerritoryBorder(int source_territory_id, Territory destination_territory);
+		void addAdjacentTerritoryBorder(int source_territory_id, Territory destination_territory, int destination_position);
 		void addTerritoryToContinent(int source_continent_id, Territory terr);
 		void printAdjacentTerritoryGraph();
 		void printContinentGraph();
@@ -51,7 +58,7 @@ class Map
 
 		//Method to perform three validations
 		bool validate();
-		bool isConnected();
+
 
 
 

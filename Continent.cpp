@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : Continent.cpp
+// Author      : Arsany Fahmy
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Comp 345 Ass 1
+//============================================================================
+
 #include "Continent.h"
 #include <iostream>
 #include <vector>

@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : Map.cpp
+// Author      : Arsany Fahmy
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Comp 345 Ass 1
+//============================================================================
+
 #include "Map.h"
 #include <iostream>
 #include <vector>
@@ -71,7 +79,7 @@ void Map::initializeTerritoriesInContinentsGraph()
 	territoriesInContinents = new vector<Territory> [numOfContinents+1];
 }
 
-void Map::addAdjacentTerritoryBorder(int source_territory_id, Territory destination_territory)
+void Map::addAdjacentTerritoryBorder(int source_territory_id, Territory destination_territory, int destination_position)
 {
 	adjacentTerritories[source_territory_id].push_back(destination_territory);
 }
@@ -113,40 +121,32 @@ void Map::printContinentGraph()
 }
 
 
-//void Map::traverse(int u, bool visited[])
-//{
-//   visited[u] = true; //mark v as visited
-//   for(int v = 1; v < territoriesInContinents[u].size(); v++){
-//         if(!visited[v])
-//        	 traverse(v, visited);
-//
-//   }
-//}
-//
-//bool Map::isConnected(){
-//   bool *vis = new bool[numOfTerritories];
-//   //for all vertex u as start point, check whether all nodes are visible or not
-//   for(int u; u < numOfTerritories; u++){
-//      for(int i = 0; i < numOfTerritories; i++)
-//      vis[i] = false; //initialize as no node is visited
-//      traverse(u, vis);
-//      for(int i = 0; i < numOfTerritories; i++){
-//         if(!vis[i]) //if there is a node, not visited by traversal, graph is not connected
-//         return false;
-//      }
-//   }
-//   return true;
-//}
-//
-//
-//bool Map::validate()
-//{
-//
-//	return isConnected();
-//
-//
-//
-//}
+
+
+bool Map::validate()
+{
+
+	// Validating if 1) the map is a connected graph
+	if(1)
+	{
+		cout << "\nGraph is not connected!" << endl;
+		return 0;
+	}
+
+	// Validating if 2) continents are connected subgraphs
+	if(1)
+	{
+		cout << "\Continents are not connected!" << endl;
+		return 0;
+	}
+
+	// Validating if 3) each country belongs to one and only one continent.
+	if(1)
+	{
+		cout << "\Each country doensn't belong to one and only one continent!" << endl;
+		return 0;
+	}
+}
 
 
 

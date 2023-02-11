@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : Territory.h
+// Author      : Arsany Fahmy
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Comp 345 Ass 1
+//============================================================================
+
 #ifndef TERRITORY.H
 #define TERRITORY.H
 #include <iostream>

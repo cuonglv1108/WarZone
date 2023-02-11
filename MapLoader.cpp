@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : MapLoader.cpp
+// Author      : Arsany Fahmy
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Comp 345 Ass 1
+//============================================================================
+
 #include "MapLoader.h"
 #include "Territory.h"
 #include "Continent.h"
@@ -224,7 +232,7 @@ Map MapLoader::loadMap()
 						for(int y = 1; y < tokens.size(); y++)
 						{
 							int destination_territory = stoi(tokens[y]) - 1;
-							map.addAdjacentTerritoryBorder(territory_id, map.getTerritories()[destination_territory]);
+							map.addAdjacentTerritoryBorder(territory_id, map.getTerritories()[destination_territory], y);
 						}
 					}
 				}
