@@ -10,17 +10,15 @@ Territory::Territory()
 	territory_id = -1;
 	territory_name = "null";
 	continent_id = -1;
-	x_coordinate = -1;
-	y_coordinate = -1;
+	numOfArmies = -1;
 }
 
-Territory::Territory(int id, string name, int cont_id,  int x, int y)
+Territory::Territory(int id, string name, int cont_id,  int arm)
 {
 	territory_id = id;
 	territory_name = name;
 	continent_id = cont_id;
-	x_coordinate = x;
-	y_coordinate = y;
+	numOfArmies = arm;
 }
 
 //Getters
@@ -37,13 +35,9 @@ int Territory::getContinent_id()
 {
 	return continent_id;
 }
-int Territory::getX_coordinate()
+int Territory::getNumOfArmies()
 {
-	return x_coordinate;
-}
-int Territory::getY_coordinate()
-{
-	return y_coordinate;
+	return numOfArmies;
 }
 
 
@@ -61,11 +55,7 @@ void Territory::setContinent_id(int id)
 {
 	continent_id = id;
 }
-void Territory::setX_coordinate(int x)
+void Territory::setNumOfArmies(int arm)
 {
-	x_coordinate = x;
-}
-void Territory::setY_coordinate(int y)
-{
-	x_coordinate = y;
+	numOfArmies = arm;
 }

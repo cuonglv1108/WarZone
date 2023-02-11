@@ -14,30 +14,28 @@ class Territory
 		int territory_id;
 		string territory_name;
 		int continent_id;
-		int x_coordinate;
-		int y_coordinate;
+		int numOfArmies;
 
 	public:
 
 		//Constructor
 		Territory();
-		Territory(int id, string name, int cont_id, int x, int y);
+		Territory(int id, string name, int cont_id, int arm);
 
 
 		//Getters
 		int getTerritory_id();
 		string getTerritory_name();
 		int getContinent_id();
-		int getX_coordinate();
-		int getY_coordinate();
+		int getNumOfArmies();
 		Territory getNeighbors();
 
 		//Setters
 		void setTerritory_id(int id);
 		void setTerritory_name(string name);
 		void setContinent_id(int id);
-		void setX_coordinate(int x);
-		void setY_coordinate(int y);
+		void setNumOfArmies(int arm);
+
 
 
 };

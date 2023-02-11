@@ -18,8 +18,10 @@ class Map
 		int numOfContinents;
 		std::vector<Territory> territories;
 		std::vector<Continent> continents;
-		list<int> *mapGraph;
+		std::vector<Territory> *adjacentTerritories;
+		std::vector<Territory> *territoriesInContinents;
 
+		void traverse(int u, bool visited[]);
 
 	public:
 
@@ -34,17 +36,22 @@ class Map
 		void printTerritories();
 
 		//Methods related to the graph representation of the map
-		void initializeMap();
-		void addAdjacentTerritoryBorder(int source_territory, int destination_territory);
-		void printAdjacentTerritoryBorders();
+		void initializeAdjacentTerritoriesGraph();
+		void initializeTerritoriesInContinentsGraph();
+		void addAdjacentTerritoryBorder(int source_territory_id, Territory destination_territory);
+		void addTerritoryToContinent(int source_continent_id, Territory terr);
+		void printAdjacentTerritoryGraph();
+		void printContinentGraph();
 
-		//Method to add a territory to the map
+		//Method to add a continent to the map
 		void addContinent(Continent cont);
 
 		//Method to add a territory to the map
 		void addTerritory(Territory terr);
 
-
+		//Method to perform three validations
+		bool validate();
+		bool isConnected();
 
 
 
@@ -53,12 +60,14 @@ class Map
 		int getNumOfTerritories();
 		int getNumOfContinents();
 		vector<Territory> getTerritories();
+		vector<Continent> getContinents();
 
 		//Setters
 		void setFileName(string name);
 		void setNumOfTerritories(int num);
 		void setNumOfContinents(int num);
 		void setTerritories(vector<Territory> terr);
+		void setContinents(vector<Continent> cont);
 
 
 

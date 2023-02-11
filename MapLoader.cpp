@@ -1,40 +1,42 @@
-//============================================================================
-// Name        : Warzone.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
+#include "MapLoader.h"
+#include "Territory.h"
+#include "Continent.h"
 #include <iostream>
 #include <vector>
-#include "Map.h"
 #include <fstream>
 #include <sstream>
+
 using namespace std;
 
-
-int main()
+MapLoader::MapLoader(): map()
 {
-	// --------------------- Introduction ---------------------//
-	cout << "Welcome to COMP 345 Assignment #1" << endl;
+	mapFileName = "null";
+}
 
-	//Storing name of file to pull data from:
-	cout << "\nPlease enter the name of the file:" << endl;
-	string input_file_name;
-	cin >> input_file_name;
-
-	// --------------------- Initializing Map ---------------------//
-	Map myMap;
-	myMap.setFileName(input_file_name);
+MapLoader::MapLoader(string fileName): map()
+{
+	mapFileName = fileName;
+}
 
 
-	// --------------------- Pulling data from file ---------------------//
 
+
+Map MapLoader::loadMap()
+{
+
+	// --------------------- Checking if file exists ---------------------//
 	ifstream myFile;
-	myFile.open(input_file_name);
+	myFile.open(mapFileName);
+	if (myFile.good() == 0)
+	{
+		//Returning Failure
+		cout << "\nMap failed to load! Please make sure that file exists" << endl;
+		return map;
+	}
+
 	//temp variable to store the context of each line in file:
 	string temp;
+
 	//temp variable to count how many countries and continents;
 	int count = 0;
 
@@ -47,6 +49,9 @@ int main()
 		//While text file still lines and the countries data have not yet been reached
 		while(getline(myFile, temp) && endLoop == false)
 		{
+
+
+			// --------------------- Storing territories  ---------------------//
 
 			//When [continents] headline is met --> *** store continents ***
 			if (temp.find("[continents]") != std::string::npos)
@@ -91,12 +96,12 @@ int main()
 						continent.setId(stoi(tokens[1]));
 						continent.setColor(tokens[2]);
 
-						myMap.addContinent(continent);
+						map.addContinent(continent);
 					}
 				}
 
 				//Storing number of continents
-				myMap.setNumOfContinents(count);
+				map.setNumOfContinents(count);
 
 				//To keep scanning the file for next line to fill countries info
 				endLoop = false;
@@ -104,11 +109,17 @@ int main()
 
 
 
+
+			// --------------------- Storing Continents  ---------------------//
+
 			//When [countries] headline is met --> *** store countries ***
 			if (temp.find("[countries]") != std::string::npos)
 			{
 				//resetting count
 				count = 0;
+
+				//Initializing the continents graph
+				map.initializeTerritoriesInContinentsGraph();
 
 				//Storing data of countries
 				while(getline(myFile, temp) && endLoop == false)
@@ -146,14 +157,16 @@ int main()
 						territory.setTerritory_id(stoi(tokens[0]));
 						territory.setTerritory_name(tokens[1]);
 						territory.setContinent_id(stoi(tokens[2]));
-						territory.setX_coordinate(stoi(tokens[3]));
-						territory.setY_coordinate(stoi(tokens[4]));
 
-						myMap.addTerritory(territory);
+						map.addTerritory(territory);
+
+						//storing the continent of territory
+						int cont_id = stoi(tokens[2]);
+						map.addTerritoryToContinent(cont_id, territory);
 					}
 				}
 				//Storing number of territories
-				myMap.setNumOfTerritories(count);
+				map.setNumOfTerritories(count);
 
 				//To keep scanning the file for next line to fill countries info
 				endLoop = false;
@@ -161,14 +174,17 @@ int main()
 
 
 
+
+			// --------------------- Storing Borders  ---------------------//
+
 			//When [borders] headline is met --> *** store borders info ***
 			if (temp.find("[borders]") != std::string::npos)
 			{
 				//resetting count
 				count = 0;
 
-				//Initializing the map graph
-				myMap.initializeMap();
+				//Initializing the adjacent territories graph
+				map.initializeAdjacentTerritoriesGraph();
 
 				//Storing data of borders
 				while(getline(myFile, temp) && endLoop == false)
@@ -205,10 +221,10 @@ int main()
 						int territory_id = stoi(tokens[0]);
 
 						//Storing the different tokens (Borders info) inside the Map class
-						for(int y = 0; y < tokens.size()-1; y++)
+						for(int y = 1; y < tokens.size(); y++)
 						{
-							count++;
-							myMap.addAdjacentTerritoryBorder(territory_id, stoi(tokens[count]));
+							int destination_territory = stoi(tokens[y]) - 1;
+							map.addAdjacentTerritoryBorder(territory_id, map.getTerritories()[destination_territory]);
 						}
 					}
 				}
@@ -219,13 +235,22 @@ int main()
 		}
 	}
 
-	//Showing the data stored for validation purposes
-	myMap.printContinents();
-	myMap.printTerritories();
-	myMap.printAdjacentTerritoryBorders();
-	cout << "\nEnd of Program!";
+	//Returning success
+	cout << "\nMap successfully loaded!" << endl;
+	return map;
+}
+
+
+//Getters
+string MapLoader::getFileName()
+{
+	return mapFileName;
+}
 
 
 
-	return 0;
+//Setters
+void MapLoader::setFileName(string name)
+{
+	mapFileName = name;
 }
