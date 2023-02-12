@@ -24,6 +24,7 @@ using namespace std;
         void toAttack();
         void issueOrder(string);
         void printOrderList();
+        void printHand();
 
 
     private:

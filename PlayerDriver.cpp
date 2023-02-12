@@ -11,8 +11,8 @@ int main() //main method of driver to display functionality of Player being impl
 
     //Arbitrary list of cards being added to the hand
     vector<Card*> h1;
-    Card c1 = new Card("airlift");
-    Card c2 = new Card("diplomacy");
+    Card c1 = new Card("Airlift");
+    Card c2 = new Card("Diplomacy");
     h1.push_back(&c1);
     h1.push_back(&c2);
 
@@ -22,9 +22,21 @@ int main() //main method of driver to display functionality of Player being impl
     Player* p1 = new Player(t1, h1, o1); //Creation of new Player using aforementioned parameters
     (*p1).issueOrder("deploy 9 armies in France");
     (*p1).issueOrder("advance 5 armies from France to Germany");
-    (*p1).printOrderList(); //displaying current orderList
-    (*p1).toDefend(); //displaying arbitrary list of territories to attack
-    (*p1).toAttack(); //displaying arbitrary list of territories to attack
 
+    cout << "Current order list: " << endl;
+    (*p1).printOrderList(); //displaying current orderList
+    cout << endl;
+
+    cout << "List of territories to defend: " << endl;
+    (*p1).toDefend(); //displaying arbitrary list of territories to defend
+    cout << endl;
+
+    cout << "List of territories to attack: " << endl;
+    (*p1).toAttack(); //displaying arbitrary list of territories to attack
+    cout << endl;
+
+    cout << "Current hand of cards: " << endl;
+    (*p1).printHand(); //displaying current hand of cards
+    cout << endl;
 }
 

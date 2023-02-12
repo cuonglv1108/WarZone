@@ -79,3 +79,11 @@ using namespace std;
             cout << orderList[i] << "";
         }
     }
+
+    void Player::printHand() () //for later display of hand of cards
+    {
+        for (int i = 0; i < hand.size(); i++)
+        {
+            cout << hand[i] << "";
+        }
+    }
