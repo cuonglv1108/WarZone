@@ -10,9 +10,9 @@ int main() //main method of driver to display functionality of Player being impl
     t1.push_back(&dt2);
 
     //Arbitrary list of cards being added to the hand
-    vector<string*> h1;
-    string c1 = "airlift";
-    string c2 = "diplomacy";
+    vector<Card*> h1;
+    Card c1 = new Card("airlift");
+    Card c2 = new Card("diplomacy");
     h1.push_back(&c1);
     h1.push_back(&c2);
 
@@ -23,9 +23,8 @@ int main() //main method of driver to display functionality of Player being impl
     (*p1).issueOrder("deploy 9 armies in France");
     (*p1).issueOrder("advance 5 armies from France to Germany");
     (*p1).printOrderList(); //displaying current orderList
-    (*p1).toAttack(); //displaying arbitrary list of territories to attack
     (*p1).toDefend(); //displaying arbitrary list of territories to attack
-
+    (*p1).toAttack(); //displaying arbitrary list of territories to attack
 
 }
 

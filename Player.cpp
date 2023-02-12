@@ -5,11 +5,11 @@ using namespace std;
     Player::Player() //default constructor
     {
         vector<string*> territories;
-        vector<string*> hand;
+        vector<Card*> hand;
         vector<Order*> orderList;
     }
 
-    Player::Player(vector<string*> t, vector<string*> h, vector<Order*> o) //constructor with parameters
+    Player::Player(vector<string*> t, vector<Card*> h, vector<Order*> o) //constructor with parameters
     {
         this->territories = t;
         this->hand = h;

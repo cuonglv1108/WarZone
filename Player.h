@@ -5,7 +5,7 @@
 #include <vector>
 
 //#include "Territory.h"
-//#include "Hand.h"
+#include "Card.h"
 #include "Order.h"
 
 using namespace std;
@@ -14,7 +14,7 @@ class Player //header class for Player of warzone containing the declaration of 
 {
     public:
         Player();
-        Player(vector<string*> t, vector<string*> h, vector<Order*> o);
+        Player(vector<string*> t, vector<Card*> h, vector<Order*> o);
         Player(const Player&);
         void toDefend();
         void toAttack();
@@ -24,7 +24,7 @@ class Player //header class for Player of warzone containing the declaration of 
 
     private:
         vector<string*> territories;
-        vector<string*> hand;
+        vector<Card*> hand;
         vector<Order*> orderList;
 
 };
