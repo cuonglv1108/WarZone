@@ -2,7 +2,7 @@
 // Name        : Card.h
 // Author      : Arsany Fahmy
 // Version     :
-// Copyright   : Your copyright notice
+// Copyright   :
 // Description : Comp 345 Ass 1
 //============================================================================
 
@@ -13,6 +13,10 @@
 
 
 using namespace std;
+
+
+
+// ----------------------------------------- Card Class -----------------------------------------//
 
 /**
     Class containing the relevant information and methods for imported files
@@ -43,6 +47,74 @@ class Card
 
 };
 
+
+
+
+
+
+// ----------------------------------------- Deck Class -----------------------------------------//
+
+/**
+    Class containing the relevant information and methods for imported files
+*/
+class Deck
+{
+	private:
+
+	    int totalNumCards;
+		int numRemainingCards;
+		std::vector<string> cardTypes;
+		std::vector<Card> remainingCards;
+
+		//Method which creates a deck of random card types
+        void create();
+
+
+	public:
+
+
+		//Constructor
+		Deck();
+		Deck(int numCards);
+
+		//Method that allows a player to draw a card at random from the cards remaining in the deck and place it in their hand of cards
+		Card draw();
+
+		//Method to show remaining cards
+		void display();
+
+
+};
+
+
+
+
+
+// ----------------------------------------- Hand Class -----------------------------------------//
+
+/**
+    Class containing a finite collection of Warzone cards
+*/
+class Hand
+{
+	private:
+
+		std::vector<Card> cards;
+		int numCards;
+
+
+	public:
+
+		//Constructor
+		Hand();
+
+		//Method to show hand cards
+		void display();
+
+		//Adding a card to hand when player draws a card form deck
+		void addCard(Card card);
+
+};
 
 
 

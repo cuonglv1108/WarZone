@@ -2,16 +2,16 @@
 // Name        : CardsDriver.cpp
 // Author      : Arsany Fahmy
 // Version     :
-// Copyright   : Your copyright notice
+// Copyright   :
 // Description : Comp 345 Ass 1
 //============================================================================
 
 #include <iostream>
 #include <vector>
-#include "Deck.h"
-#include "Hand.h"
 #include <fstream>
 #include <sstream>
+#include "Card.h"
+
 using namespace std;
 
 

@@ -2,13 +2,14 @@
 // Name        : MapDriver.cpp
 // Author      : Arsany Fahmy
 // Version     :
-// Copyright   : Your copyright notice
+// Copyright   :
 // Description : Comp 345 Ass 1
 //============================================================================
 
+
+#include "Map.h"
 #include <iostream>
 #include <vector>
-#include "MapLoader.h"
 #include <fstream>
 #include <sstream>
 using namespace std;

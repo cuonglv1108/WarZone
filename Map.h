@@ -2,7 +2,7 @@
 // Name        : Map.h
 // Author      : Arsany Fahmy
 // Version     :
-// Copyright   : Your copyright notice
+// Copyright   :
 // Description : Comp 345 Ass 1
 //============================================================================
 
@@ -11,10 +11,100 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include "Territory.h"
-#include "Continent.h"
 
 using namespace std;
+
+
+
+// ----------------------------------------- Continent Class -----------------------------------------//
+
+/**
+    Class containing the different Continent information
+*/
+class Continent
+{
+	private:
+
+		string name;
+		int id;
+		string color;
+
+
+	public:
+
+
+		//Constructor
+		Continent();
+		Continent(string ContName, int cont_id, string col);
+
+
+		//Getters
+		string getName();
+		int getId();
+		string getColor();
+
+		//Setters
+		void setName(string n);
+		void setId(int i );
+		void setColor(string c);
+
+
+
+
+};
+
+
+
+
+
+
+
+
+// ----------------------------------------- Territory Class -----------------------------------------//
+
+/**
+    Class containing the different Territory information
+*/
+class Territory
+{
+	private:
+
+		int territory_id;
+		string territory_name;
+		int continent_id;
+		int numOfArmies;
+
+	public:
+
+		//Constructor
+		Territory();
+		Territory(int id, string name, int cont_id, int arm);
+
+
+		//Getters
+		int getTerritory_id();
+		string getTerritory_name();
+		int getContinent_id();
+		int getNumOfArmies();
+		Territory getNeighbors();
+
+		//Setters
+		void setTerritory_id(int id);
+		void setTerritory_name(string name);
+		void setContinent_id(int id);
+		void setNumOfArmies(int arm);
+
+
+
+};
+
+
+
+
+
+
+
+// ----------------------------------------- Map Class -----------------------------------------//
 
 /**
     Class containing the relevant information and methods for imported files
@@ -84,6 +174,45 @@ class Map
 };
 
 
+
+
+
+
+
+// ----------------------------------------- MapLoader Class -----------------------------------------//
+
+/**
+    Class responsible for loading the map component from input files (.map) having the proper format
+*/
+class MapLoader
+{
+	private:
+
+		Map map;
+		string mapFileName;
+
+
+	public:
+
+
+		//Constructor
+		MapLoader();
+		MapLoader(string fileName);
+
+
+		//Method responsible for loading the map from text.file
+		Map loadMap();
+
+
+		//Getters
+		string getFileName();
+
+
+		//Setters
+		void setFileName(string name);
+
+
+};
 
 
 #endif
