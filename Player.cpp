@@ -16,11 +16,52 @@ using namespace std;
         this->orderList = o;
     }
 
-    Player::Player(const Player &p) //copy constructor
+    Player::Player(const Player& other) //copy constructor
     {
-        this->territories = p.territories;
-        this->hand = p.hand;
-        this->orderList = p.orderList;
+        this->territories = other.territories;
+        this->hand = other.hand;
+        this->orderList = other.orderList;
+    }
+
+    Player& Player::operator=(const Player &other) //assignment operator
+    {
+        if (this == &other)
+        {
+            return *this;
+        }
+
+        this->territories = other.territories;
+        this->hand = other.hand;
+        this->orderList = other.orderList;
+
+        return *this;
+    }
+
+    ostream& operator <<(ostream& o, const Player::Player& p) //stream insertion operator
+    {
+        switch (p)
+        {
+            case Player::Player::toDefend:
+                p << "toDefend";
+                break;
+            case Player::Player::toAttack:
+                p << "toAttack";
+                break;
+            case Player::Player::issueOrder:
+                p << "issueOrder";
+                break;
+            case Player::Player::printOrderList:
+                p << "printOrderList";
+                break;
+        }
+        return p;
+    }
+
+    Player::~Player() //destructor
+    {
+        delete territories;
+        delete hand;
+        delete orderList;
     }
 
     void Player::toDefend() //returns list of territories to be defended
