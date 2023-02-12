@@ -37,31 +37,11 @@ using namespace std;
         return *this;
     }
 
-    ostream& operator <<(ostream& o, const Player::Player& p) //stream insertion operator
-    {
-        switch (p)
-        {
-            case Player::Player::toDefend:
-                p << "toDefend";
-                break;
-            case Player::Player::toAttack:
-                p << "toAttack";
-                break;
-            case Player::Player::issueOrder:
-                p << "issueOrder";
-                break;
-            case Player::Player::printOrderList:
-                p << "printOrderList";
-                break;
-        }
-        return p;
-    }
-
     Player::~Player() //destructor
     {
-        delete territories;
-        delete hand;
-        delete orderList;
+        territories.clear();
+        hand.clear();
+        orderList.clear();
     }
 
     void Player::toDefend() //returns list of territories to be defended
@@ -94,10 +74,8 @@ using namespace std;
 
     void Player::printOrderList() //for later display of orderList
     {
-        vector<Order*>::iterator i = orderList.begin();
-        for (i != orderList.end(); i++)
+        for (int i = 0; i < orderList.size(); i++)
         {
-            cout << (*i)->getResult() << " ";
+            cout << orderList[i] << "";
         }
     }
-

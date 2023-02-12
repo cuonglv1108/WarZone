@@ -6,20 +6,19 @@
 
 //#include "Territory.h"
 #include "Card.h"
-#include "Order.h"
+#include "Orders.h"
 
 using namespace std;
 
-class Player //header class for Player of warzone containing the declaration of methods to be implemented in the source code as well as data members
-{
+    class Player //header class for Player of warzone containing the declaration of methods to be implemented in the source code as well as data members
+    {
     public:
 
         Player();
         Player(vector<string*> t, vector<Card*> h, vector<Order*> o);
         Player(const Player& other);
         ~Player();
-        Player& operator=(const Player& other)
-        friend ostream& operator <<(ostream& o, const Player& p)
+        Player& operator=(const Player& other);
 
         void toDefend();
         void toAttack();
@@ -32,7 +31,8 @@ class Player //header class for Player of warzone containing the declaration of 
         vector<Card*> hand;
         vector<Order*> orderList;
 
-};
+    };
 
 
 #endif //WARZONE_PLAYER_H
+
