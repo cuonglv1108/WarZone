@@ -20,8 +20,8 @@ int main() //main method of driver to display functionality of Player being impl
     vector<Order*> o1;
 
     Player* p1 = new Player(t1, h1, o1); //Creation of new Player using aforementioned parameters
-    (*p1).issueOrder("deploy");
-    (*p1).issueOrder("advance");
+    (*p1).issueOrder("deploy 9 armies in France");
+    (*p1).issueOrder("advance 5 armies from France to Germany");
     (*p1).printOrderList(); //displaying current orderList
     (*p1).toAttack(); //displaying arbitrary list of territories to attack
     (*p1).toDefend(); //displaying arbitrary list of territories to attack
