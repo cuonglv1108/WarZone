@@ -14,7 +14,9 @@
 
 using namespace std;
 
-
+/**
+    Class containing the different Territory information
+*/
 class Territory
 {
 	private:

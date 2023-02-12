@@ -16,7 +16,9 @@
 
 using namespace std;
 
-
+/**
+    Class containing the relevant information and methods for imported files
+*/
 class Map
 {
 	private:

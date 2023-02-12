@@ -14,7 +14,9 @@
 
 using namespace std;
 
-
+/**
+    Class containing the different Continent information
+*/
 class Continent
 {
 	private:

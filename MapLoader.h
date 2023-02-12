@@ -16,6 +16,9 @@
 using namespace std;
 
 
+/**
+    Class responsible for loading the map component from input files (.map) having the proper format
+*/
 class MapLoader
 {
 	private:
