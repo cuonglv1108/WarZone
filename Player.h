@@ -4,21 +4,20 @@
 #include <iostream>
 #include <vector>
 
-// #include "Territory.h"
-// #include "Hand.h"
- #include "Order.h"
+//#include "Territory.h"
+//#include "Hand.h"
+#include "Order.h"
 
 using namespace std;
 
-class Player
+class Player //header class for Player of warzone containing the declaration of methods to be implemented in the source code as well as data members
 {
     public:
         Player();
         Player(vector<string*> t, vector<string*> h, vector<Order*> o);
-        Player(const Player&); //copy constructor
+        Player(const Player&);
         void toDefend();
         void toAttack();
-        vector<Order*> getOrderList();
         void issueOrder(string);
         void printOrderList();
 
