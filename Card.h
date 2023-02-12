@@ -34,7 +34,7 @@ class Card
 		//Constructor
 		Card(string type);
 
-		//copy constructor
+		//copy
 		void copy(Card &c);
 
 		//Method that enables a player to use it during game play by creating special orders. Once a card has been played, it is removed from the hand and put back into the deck.
@@ -77,6 +77,9 @@ class Deck
 		Deck();
 		Deck(int numCards);
 
+		//copy
+		void copy(Deck &d);
+
 		//Method that allows a player to draw a card at random from the cards remaining in the deck and place it in their hand of cards
 		Card draw();
 
@@ -107,6 +110,9 @@ class Hand
 
 		//Constructor
 		Hand();
+
+		//copy
+		void copy(Hand &h);
 
 		//Method to show hand cards
 		void display();

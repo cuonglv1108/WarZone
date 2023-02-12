@@ -37,6 +37,9 @@ class Continent
 		Continent();
 		Continent(string ContName, int cont_id, string col);
 
+		//copy
+		void copy(Continent &c);
+
 
 		//Getters
 		string getName();
@@ -80,6 +83,8 @@ class Territory
 		Territory();
 		Territory(int id, string name, int cont_id, int arm);
 
+		//copy
+		void copy(Territory &t);
 
 		//Getters
 		int getTerritory_id();
@@ -129,6 +134,8 @@ class Map
 		Map();
 		Map(string fileName, int numTerritories, int numContinents);
 
+		//copy
+		void copy(Map &t);
 
 		//Printing Methods
 		void printContinents();
@@ -199,6 +206,8 @@ class MapLoader
 		MapLoader();
 		MapLoader(string fileName);
 
+		//copy
+		void copy(MapLoader &m);
 
 		//Method responsible for loading the map from text.file
 		Map loadMap();

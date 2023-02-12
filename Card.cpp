@@ -73,6 +73,15 @@ Deck::Deck(int numCards): remainingCards(), cardTypes()
 }
 
 
+void Deck::copy(Deck &d)
+{
+	totalNumCards = d.totalNumCards;
+	numRemainingCards = d.numRemainingCards;
+	cardTypes = d.cardTypes;
+	remainingCards = d.remainingCards;
+}
+
+
 Card Deck::draw()
 {
 	//Printing an error message if no cards available to draw
@@ -155,6 +164,13 @@ Hand::Hand(): cards()
 	numCards = 0;
 }
 
+
+void Hand::copy(Hand &d)
+{
+	cards = d.cards;
+	numCards = d.numCards;
+
+}
 
 void Hand::display()
 {
