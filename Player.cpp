@@ -48,7 +48,7 @@ using namespace std;
     {
         for (int i = 0; i < territories.size(); i++)
         {
-            cout << *territories[i] << "";
+            cout << *territories[i] << "" << endl;
         }
     }
 
@@ -62,13 +62,13 @@ using namespace std;
 
         for (int i = 0; i < tAttack.size(); i++)
         {
-            cout << *tAttack[i] << "";
+            cout << *tAttack[i] << "" << endl;
         }
     }
 
-    void Player::issueOrder(string order) //adds new order to the orderList
+    void Player::issueOrder() //adds new order to the orderList
     {
-        Order *o = new Order(order);
+        Order *o = new Order();
         orderList.push_back(o);
     }
 
@@ -76,14 +76,14 @@ using namespace std;
     {
         for (int i = 0; i < orderList.size(); i++)
         {
-            cout << orderList[i] << "";
+            cout << orderList[i] << "" << endl;
         }
     }
 
-    void Player::printHand() () //for later display of hand of cards
+    void Player::printHand() //for later display of hand of cards
     {
         for (int i = 0; i < hand.size(); i++)
         {
-            cout << hand[i] << "";
+            cout << hand[i] << "" << endl;
         }
     }

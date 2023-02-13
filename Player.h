@@ -22,7 +22,7 @@ using namespace std;
 
         void toDefend();
         void toAttack();
-        void issueOrder(string);
+        void issueOrder();
         void printOrderList();
         void printHand();
 
