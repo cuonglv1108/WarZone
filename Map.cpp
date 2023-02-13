@@ -31,6 +31,13 @@ Continent::Continent(string ContName, int cont_id, string col)
 	color = col;
 }
 
+//copy
+void Continent::copy(Continent &c)
+{
+	name = c.name;
+	id = c.id;
+	color = c.color;
+}
 
 //Getters
 string Continent::getName()
@@ -84,6 +91,15 @@ Territory::Territory(int id, string name, int cont_id,  int arm)
 	territory_name = name;
 	continent_id = cont_id;
 	numOfArmies = arm;
+}
+
+//copy
+void Territory::copy(Territory &t)
+{
+	territory_id = t.territory_id;
+	territory_name = t.territory_name;
+	continent_id = t.continent_id;
+	numOfArmies = t.numOfArmies;
 }
 
 //Getters
@@ -142,6 +158,18 @@ Map::Map(string fileName, int numTerritories, int numContinents): territories(),
 	mapFileName = fileName;
 	numOfTerritories = numTerritories;
 	numOfContinents = numContinents;
+}
+
+//copy
+void Map::copy(Map &m)
+{
+	mapFileName = m.mapFileName;
+	numOfTerritories = m.numOfTerritories;
+	numOfContinents = m.numOfContinents;
+	territories = m.territories;
+	continents = m.continents;
+	adjacentTerritories = m.adjacentTerritories;
+	territoriesInContinents = m.territoriesInContinents;
 }
 
 void Map::addContinent(Continent cont)
@@ -329,6 +357,14 @@ MapLoader::MapLoader(): map()
 MapLoader::MapLoader(string fileName): map()
 {
 	mapFileName = fileName;
+}
+
+
+//copy
+void MapLoader::copy(MapLoader &m)
+{
+	map = m.map;
+	mapFileName = m.mapFileName;
 }
 
 
