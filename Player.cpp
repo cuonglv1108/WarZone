@@ -1,16 +1,27 @@
 #include "Player.h"
+#include "Map.h"
 
 using namespace std;
 
     Player::Player() //default constructor
     {
-        vector<string*> territories;
+    	name = "No Name!";
+    	reinforcementPool = -1;
+        vector<Territory*> territories;
         vector<Card*> hand;
         vector<Order*> orderList;
     }
 
-    Player::Player(vector<string*> t, vector<Card*> h, vector<Order*> o) //constructor with parameters
+    Player::Player(string n) //constructor with parameters
+	{
+    	reinforcementPool = -1;
+		this->name = n;
+	}
+
+    Player::Player(string n, int r, vector<Territory*> t, vector<Card*> h, vector<Order*> o) //constructor with parameters
     {
+    	this->reinforcementPool = r;
+    	this->name = n;
         this->territories = t;
         this->hand = h;
         this->orderList = o;
@@ -18,6 +29,8 @@ using namespace std;
 
     Player::Player(const Player& other) //copy constructor
     {
+    	this->reinforcementPool = other.reinforcementPool;
+    	this->name = other.name;
         this->territories = other.territories;
         this->hand = other.hand;
         this->orderList = other.orderList;
@@ -30,6 +43,8 @@ using namespace std;
             return *this;
         }
 
+        this->name = other.name;
+        this->reinforcementPool = other.reinforcementPool;
         this->territories = other.territories;
         this->hand = other.hand;
         this->orderList = other.orderList;
@@ -48,7 +63,7 @@ using namespace std;
     {
         for (int i = 0; i < territories.size(); i++)
         {
-            cout << *territories[i] << "" << endl;
+            cout << territories[i]->getTerritory_name() << endl;
         }
     }
 
@@ -84,6 +99,40 @@ using namespace std;
     {
         for (int i = 0; i < hand.size(); i++)
         {
-            cout << hand[i] << "" << endl;
+            cout << hand[i]->getAssignedType() << "" << endl;
         }
     }
+
+    void Player::printTerritories() //for later display of owned territories
+        {
+            for (int i = 0; i < territories.size(); i++)
+            {
+                cout << "Territory #" << (i+1) << ": " <<territories[i]->getTerritory_name() << endl;
+            }
+        }
+
+    void Player::assignTerritory(Territory* t)
+    {
+    	territories.push_back(t);
+    }
+
+    void Player::updateReinforcementPool(int r)
+    {
+    	reinforcementPool = r;
+    }
+
+    vector<Card*> Player::getHand()
+    {
+    	return hand;
+    }
+
+    void Player::addCardToHand(Card* card)
+    {
+    	hand.push_back(card);
+    }
+
+    string Player::getName()
+	{
+		return name;
+	}
+

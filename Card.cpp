@@ -91,21 +91,37 @@ Card Deck::draw()
 	}
 	else
 	{
-		//Generating random number between 0 and sizeOfArray of remaining cards - 1
-		//in order to draw a random card from the pile of remaining cards
-		std::random_device rd; // obtain a random number from hardware
-		std::mt19937 gen(rd()); // seed the generator
-		std::uniform_int_distribution<> distr(0, numRemainingCards-1); // define the range
-		int randomIndex = distr(gen) ; // generate number
+//		//Generating random number between 0 and sizeOfArray of remaining cards - 1
+//		//in order to draw a random card from the pile of remaining cards
+//		std::random_device rd; // obtain a random number from hardware
+//		std::mt19937 gen(rd()); // seed the generator
+//		std::uniform_int_distribution<> distr(0, numRemainingCards-1); // define the range
+//		int randomIndex = distr(gen) ; // generate number
+//
+//		//Card to return
+//		Card card("asdasdas");
+//
+//		//Copying content of randomly selected card
+//		card.copy(remainingCards[0]);
+//
+//		//Updating the deck by removing the card that was picked
+//		remainingCards.erase(remainingCards.begin() + randomIndex);
+//
+//		//Updating number of remaining cards
+//		numRemainingCards--;
+//
+//		return card;
+
+		//Drawing the last card on the deck then popping it from the deck
 
 		//Card to return
 		Card card("asdasdas");
 
-		//Copying content of randomly selected card
-		card.copy(remainingCards[0]);
+		//Copying content of  selected card
+		card.copy(remainingCards[numRemainingCards-1]);
 
 		//Updating the deck by removing the card that was picked
-		remainingCards.erase(remainingCards.begin() + randomIndex);
+		remainingCards.pop_back();
 
 		//Updating number of remaining cards
 		numRemainingCards--;

@@ -42,7 +42,7 @@ int main()
 
 	//OrderList.move(0, 5);
 	OrderList.move(0, 8);//invalid
-	
+
 	//print orderlist
 	cout << "\n the orderlist contains: " << endl;
 	for (int i = 0; i < OrderList.get_order_list()->size(); i++) {

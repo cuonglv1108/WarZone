@@ -19,7 +19,7 @@ int main() //main method of driver to display functionality of Player being impl
     //Creation of orderList to add arbitrary orders
     vector<Order*> o1;
 
-    Player* p1 = new Player(t1, h1, o1); //Creation of new Player using aforementioned parameters
+    Player* p1 = new Player("player", 5, t1, h1, o1); //Creation of new Player using aforementioned parameters
     (*p1).issueOrder();
     (*p1).issueOrder();
 

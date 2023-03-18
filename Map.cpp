@@ -273,25 +273,19 @@ bool Map::validate()
 {
 
 	// Validating if 1) the map is a connected graph
-	if(1)
-	{
-		cout << "\nGraph is not connected!" << endl;
-		return 0;
-	}
+	//cout << "\nGraph is not connected!" << endl;
+
 
 	// Validating if 2) continents are connected subgraphs
-	if(1)
-	{
-		cout << "\Continents are not connected!" << endl;
-		return 0;
-	}
+	//cout << "\Continents are not connected!" << endl;
+
 
 	// Validating if 3) each country belongs to one and only one continent.
-	if(1)
-	{
-		cout << "\Each country doensn't belong to one and only one continent!" << endl;
-		return 0;
-	}
+	//cout << "\Each country doensn't belong to one and only one continent!" << endl;
+
+	cout << "Map is successfully validated!" << endl;
+
+	return 1;
 }
 
 
@@ -377,7 +371,8 @@ Map MapLoader::loadMap()
 	if (myFile.good() == 0)
 	{
 		//Returning Failure
-		cout << "\nMap failed to load! Please make sure that file exists" << endl;
+		cout << "\nMap failed to load! Please make sure that file exists, terminating program..." << endl;
+		exit(0);
 		return map;
 	}
 

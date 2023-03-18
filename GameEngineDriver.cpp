@@ -12,8 +12,9 @@ int main()
 		cout << "Current Game State: " << ge.getGameState() << "." << endl;
 		cin >> userinput;
 		ge.setUserCommand(userinput);
-		ge.checkCommand();
-		ge.cleanUserCommand();
+		//ge.checkCommand();
+		//ge.cleanUserCommand();
+		ge.startupPhase();
 
 		//GameEngine::GameEngine::cleanUserCommand();
 	}

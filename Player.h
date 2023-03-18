@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 
-//#include "Territory.h"
-#include "Card.h"
+#include "Map.h"
 #include "Orders.h"
+#include "Card.h"
 
 using namespace std;
 
@@ -15,7 +15,8 @@ using namespace std;
     public:
 
         Player();
-        Player(vector<string*> t, vector<Card*> h, vector<Order*> o);
+        Player(string n, int r,vector<Territory*> t, vector<Card*> h, vector<Order*> o);
+        Player(string n);
         Player(const Player& other);
         ~Player();
         Player& operator=(const Player& other);
@@ -25,10 +26,18 @@ using namespace std;
         void issueOrder();
         void printOrderList();
         void printHand();
+        void printTerritories();
+        void assignTerritory(Territory* t);
+        void updateReinforcementPool(int r);
+        vector<Card*> getHand();
+        void addCardToHand(Card* card);
+        string getName();
 
 
     private:
-        vector<string*> territories;
+        string name;
+        int reinforcementPool;
+        vector<Territory*> territories;
         vector<Card*> hand;
         vector<Order*> orderList;
 

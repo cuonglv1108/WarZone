@@ -1,5 +1,11 @@
 #include "GameEngine.h"
+#include "Map.h"
+#include "Player.h"
+#include "Card.h"
 #include <string>
+#include <vector>
+#include <iostream>
+#include <filesystem>
 using namespace std;
 
 
@@ -8,6 +14,8 @@ namespace GameEngine
 	//default constructor
 	GameEngine::GameEngine()
 	{
+		deck = new Deck(50);
+		map = new Map();
 		usercommand = NULL;
 		currentgamestate = new GameState();
 		*currentgamestate = GameState::Start; //initialize game to Start state
@@ -23,6 +31,15 @@ namespace GameEngine
 		//initialize, then copy
 		currentgamestate = new GameState();
 		*currentgamestate = *other.currentgamestate;
+
+		//initialize, then copy
+		map = new Map();
+		*map = *other.map;
+
+		//initialize, then copy
+		deck = new Deck();
+		*deck = *other.deck;
+
 	}
 
 	GameEngine& GameEngine::operator=(const GameEngine& other)
@@ -39,6 +56,14 @@ namespace GameEngine
 		//initialize, then copy
 		currentgamestate = new GameState();
 		*currentgamestate = *other.currentgamestate;
+
+		//initialize, then copy
+		map = new Map();
+		*map = *other.map;
+
+		//initialize, then copy
+		deck = new Deck();
+		*deck = *other.deck;
 
 		return *this;
 	}
@@ -207,6 +232,157 @@ namespace GameEngine
 	{
 		delete usercommand;
 		usercommand = NULL;
+	}
+
+	void GameEngine::startupPhase()
+	{
+		// ---------------------------------------- LoadMap ---------------------------------------- //
+		if(*usercommand == "loadmap")
+		{
+			//Retrieving all the available maps to load
+			string path = "./";
+			string* files = new string[5];
+			int count = 0;
+			for (const auto & entry : __fs::filesystem::directory_iterator(path))
+			{
+				string temp = entry.path();
+				if (temp.substr(temp.size() - 3) == "map")
+				{
+					temp = entry.path();
+					files[count] = temp.substr(2);
+					count++;
+				}
+			}
+
+			//Displaying all the available maps
+			int count2 = 0;
+			cout << "Please choose which map to load: (Type the name)" << endl;
+			for(int i = 0; i < count; i++)
+			{
+				cout << count2+1 << ": " << files[count2] << endl;
+				count2++;
+			}
+
+			//Storing name of file to pull data from:
+			string input_file_name;
+			cin >> input_file_name;
+
+
+			//Loading Map
+			MapLoader loader(input_file_name);
+			Map temp = loader.loadMap();
+			map->copy(temp);
+
+		}
+
+		// ---------------------------------------- validateMap ---------------------------------------- //
+		if(*usercommand == "validatemap")
+		{
+			//Validating Map
+			map->validate();
+		}
+
+
+		// ---------------------------------------- AddPlayer ---------------------------------------- //
+		if(*usercommand == "addplayer")
+		{
+			//Adding players
+			cout << "Please select how many players you would like to add (2-6): ";
+			int numPlayers = -1;
+			do
+			{
+				cin >> numPlayers;
+				cout << numPlayers;
+
+				if((numPlayers > 6) || (numPlayers < 2))
+				{
+					cout << "\nPlease try again, number of players must be between 2 and 6!" << endl;
+					numPlayers = -1;
+				}
+			}
+			while(numPlayers == -1);
+
+
+			for (int i = 0; i < numPlayers; i ++)
+			{
+				cout << "\nPlease enter name of Player # " << (i+1) << ": ";
+				string name;
+				cin >> name;
+				Player *temp2 = new Player(name);
+				players.push_back(temp2);
+			}
+		}
+
+
+
+		// ---------------------------------------- GameStart ---------------------------------------- //
+		//Distributing territories to players
+		if(*usercommand == "gamestart")
+		{
+			cout << map->getNumOfTerritories() << endl;
+			//Iterate through all territories
+			for (int i = 0; i < map->getNumOfTerritories(); i++)
+			{
+				//Iterate through all players
+				for(int y = 0; y < players.size(); y++)
+				{
+					Territory *temp = new Territory();
+					temp->copy(map->getTerritories()[i]);
+					players[y]->assignTerritory(temp);
+					i++;
+				}
+				i--;
+
+			}
+
+			//To display territories of each player (testing)
+			for(int y = 0; y < players.size(); y++)
+			{
+				cout << "here" <<endl;
+				cout << players[y] << endl;
+				players[y]->printTerritories();
+			}
+
+
+			//Giving 50 armies to the players
+			for(int y = 0; y < players.size(); y++)
+			{
+				players[y]->updateReinforcementPool(50);
+			}
+
+			//Making players draw two cards from the deck
+			for(int y = 0; y < players.size(); y++)
+			{
+				string cardType = deck->draw().getAssignedType();
+				Card *temp5 = new Card(cardType);
+				players[y]->addCardToHand(temp5);
+
+				cardType = deck->draw().getAssignedType();
+				temp5 = new Card(cardType);
+				players[y]->addCardToHand(temp5);
+
+			}
+
+			//Swithing the game to the play phase
+
+//			//To test if everything is good!
+//			for(int y = 0; y < players.size(); y++)
+//			{
+//				cout << "\nplayer: " << players[y]->getName() << endl;
+//				players[y]->printHand();
+//			}
+//			deck->display();
+		}
+
+
+
+
+
+
+
+
+
+
 	}
 
 }
