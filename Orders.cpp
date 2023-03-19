@@ -23,6 +23,9 @@ void Order::execute()
 	if (valid) {
 		cout << "executes the action..." << endl;
 	}
+
+	//Sending command to log file
+	Subject::Notify("Command: Execute Order");
 }
 
 //set type id
@@ -37,12 +40,19 @@ string Order::get_type()
 	return vec_type1.at(type_id);
 }
 
+void Order::stringToLog(string s)
+{
+	stringsToLog = s;
+}
 
 
 // push an order into Orderlist
 void OrderList::set_order_list(Order* an_order)
 {
 	vec_order_list.push_back(an_order); //add an order
+
+	//Sending command to log file
+	Subject::Notify("Command: Add Order(" + an_order->get_type() + ")");
 }
 
 vector<Order*>* OrderList::get_order_list()
@@ -79,6 +89,11 @@ void OrderList::move(int position, int new_position)
 	else {
 		cout << "\n not valid position, try again" << endl;
 	}
+}
+
+void OrderList::stringToLog(string s)
+{
+	stringsToLog = s;
 }
 
 Deploy::Deploy()

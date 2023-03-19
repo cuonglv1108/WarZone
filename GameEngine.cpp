@@ -105,6 +105,8 @@ namespace GameEngine
 	{
 		delete usercommand;
 		delete currentgamestate;
+		delete map;
+		delete deck;
 	}
 
 	void GameEngine::setUserCommand(string a)
@@ -330,18 +332,19 @@ namespace GameEngine
 					temp->copy(map->getTerritories()[i]);
 					players[y]->assignTerritory(temp);
 					i++;
+
 				}
 				i--;
 
 			}
 
-			//To display territories of each player (testing)
-			for(int y = 0; y < players.size(); y++)
-			{
-				cout << "here" <<endl;
-				cout << players[y] << endl;
-				players[y]->printTerritories();
-			}
+
+//			//To display territories of each player (testing)
+//			for(int y = 0; y < players.size(); y++)
+//			{
+//				cout << "Player: " << players[y]->getName() << endl;
+//				players[y]->printTerritories();
+//			}
 
 
 			//Giving 50 armies to the players
@@ -363,7 +366,7 @@ namespace GameEngine
 
 			}
 
-			//Swithing the game to the play phase
+			//Switching the game to the play phase
 
 //			//To test if everything is good!
 //			for(int y = 0; y < players.size(); y++)
@@ -373,13 +376,6 @@ namespace GameEngine
 //			}
 //			deck->display();
 		}
-
-
-
-
-
-
-
 
 
 

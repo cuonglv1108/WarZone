@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "LoggingObserver.h"
 using namespace std;
 
 // COMP 345S - ASSIGNMENT 1
@@ -10,7 +11,7 @@ using namespace std;
 // : Orders are created by the player during their turn and placed into the player’s list of orders. By default, each order is placed 
 //	in the list sequentially
 
-class Order
+class Order: ILoggable, Subject
 {
 public :
 	Order();
@@ -26,7 +27,10 @@ public :
 	void set_type_id(int num);
 	string get_type();
 
+	void stringToLog(string s);
+
 private :
+	string stringsToLog;
 	bool valid;
 	vector<string> vec_type1 = { "deploy", "advance", "bomb", "blockade", "airlift", "negotiate" };
 	int type_id;
@@ -86,7 +90,7 @@ public:
 private:
 };
 
-class OrderList
+class OrderList: ILoggable, Subject
 {
 public:
 	void set_order_list(Order* an_order);
@@ -98,6 +102,9 @@ public:
 	//move the orders
 	void move(int position, int new_position);
 
+	void stringToLog(string s);
+
 private:
+	string stringsToLog;
 	vector<Order*> vec_order_list; //store the orders put in
 };

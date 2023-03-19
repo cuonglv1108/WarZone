@@ -5,11 +5,12 @@
 #include <stdlib.h>
 #include "Map.h"
 #include "Player.h"
+#include "LoggingObserver.h"
 using namespace std;
 
 namespace GameEngine
 {
-	class GameEngine
+	class GameEngine: ILoggable, Subject
 	{
 		public:
 			//Define enum type that lists each possible game state, for readability
