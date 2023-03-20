@@ -388,25 +388,38 @@ namespace GameEngine
 
         if(*usercommand == "assigncountries")
         {
-            for (int y = 0; y < players.size(); y++) { //iterate through players
-                int eu;
-                int na;
-                vector<Territory *> t = players[y]->getTerritories(); //list of player's owned territories
-                for (int i = 0; i < t.size(); i++) {
-                    if (t[i]->getContinent_id() == 1)  //territory is in europe then increment europe count
-                        eu++;
-                    else if (t[i]->getContinent_id() == 2) //territory is in north america then increement na count
-                        na++;
+            vector<Continent> c = map->getContinents(); //retrieve continents list for user selected map
+            for (int i = 0; i < c.size() ; i++)
+            {
+                int cid = c[i].getId();
+                int count; //amount of territories for a continent
+                vector<Territory> t = map->getTerritories(); //retrieve territories list for user selected map
+                for (int j = 0; j < t.size(); j++)
+                {
+                    if (t[j].getContinent_id() == cid) // territory's continent matches given continent in iteration then increment its amount of territories
+                    {
+                        count++;
+                    }
                 }
-                if (eu >= 10) { //player controls all of europe then add europe bonus value to formula computing how many armies to add to their pool
-                    int a = floor((players[y]->getNoTerritories()) / 3);
-                    players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 6);
-                } else if (na >= 10) { //player controls all of north america then add its bonus value to formula
-                    int a = floor((players[y]->getNoTerritories()) / 3);
-                    players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 3);
-                } else { //otherwise, proceed with regular formula: no of territories owned divided by 3, rounded down
-                    int a = floor((players[y]->getNoTerritories()) / 3);
-                    players[y]->updateReinforcementPool((players[y]->getArmies()) + a);
+                for (int y = 0; y < players.size(); y++) //iterate through players
+                {
+                    vector<Territory *> t = players[y]->getTerritories(); //list of player's owned territories
+                    int pcount; //amount of territories owned by player for a continent
+                    for (int i = 0; i < t.size(); i++)  //iterate through players owned territories
+                    {
+                        if (t[i]->getContinent_id() == cid)  //territory is in current continent then increment its count
+                            pcount++;
+                    }
+                    if (pcount >= count) //player controls all of continent's territories then add bonus value to formula computing how many armies to add to their pool
+                    {
+                        int a = floor((players[y]->getNoTerritories()) / 3);
+                        players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 6);
+                    }
+                    else
+                    { //otherwise, proceed with regular formula: no of territories owned divided by 3, rounded down
+                        int a = floor((players[y]->getNoTerritories()) / 3);
+                        players[y]->updateReinforcementPool((players[y]->getArmies()) + a);
+                    }
                 }
             }
         }
