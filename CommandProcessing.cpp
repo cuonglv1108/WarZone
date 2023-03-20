@@ -69,6 +69,9 @@ void Command::saveEffect(string effect)
 	//delete previous value, then store new one
 	delete commandeffect;
 	commandeffect = new string(effect);
+
+	//Sending command to log file
+	Subject::Notify("Command: Save Effect(" + effect + ")");
 }
 
 string Command::getEffect()

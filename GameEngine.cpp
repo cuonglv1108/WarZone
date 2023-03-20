@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include "Map.h"
 #include "Player.h"
+#include "CommandProcessing.h"
 #include "Card.h"
 #include <string>
 #include <vector>
@@ -19,6 +20,8 @@ namespace GameEngine
 		usercommand = NULL;
 		currentgamestate = new GameState();
 		*currentgamestate = GameState::Start; //initialize game to Start state
+		//Sending command to log file
+		Subject::Notify("Current Game State: Start");
 	}
 
 	//copy constructor
@@ -127,6 +130,8 @@ namespace GameEngine
 				if (*usercommand == "loadmap")
 				{
 					*currentgamestate = GameState::MapLoaded;
+					//Sending command to log file
+					Subject::Notify("Current Game State: MapLoaded");
 				}
 				else
 				{
@@ -137,10 +142,14 @@ namespace GameEngine
 				if (*usercommand == "loadmap")
 				{
 					*currentgamestate = GameState::MapLoaded;
+					//Sending command to log file
+					Subject::Notify("Current Game State: MapLoaded");
 				}
 				else if (*usercommand == "validatemap")
 				{
 					*currentgamestate = GameState::MapValidated;
+					//Sending command to log file
+					Subject::Notify("Current Game State: MapValidated");
 				}
 				else
 				{
@@ -151,6 +160,8 @@ namespace GameEngine
 				if (*usercommand == "addplayer")
 				{
 					*currentgamestate = GameState::PlayersAdded;
+					//Sending command to log file
+					Subject::Notify("Current Game State: PlayersAdded");
 				}
 				else
 				{
@@ -161,10 +172,14 @@ namespace GameEngine
 				if (*usercommand == "addplayer")
 				{
 					*currentgamestate = GameState::PlayersAdded;
+					//Sending command to log file
+					Subject::Notify("Current Game State: PlayersAdded");
 				}
 				else if (*usercommand == "assigncountries")
 				{
 					*currentgamestate = GameState::AssignReinforcement;
+					//Sending command to log file
+					Subject::Notify("Current Game State: ReinforcementAssigned");
 				}
 				else
 				{
@@ -175,6 +190,8 @@ namespace GameEngine
 				if (*usercommand == "issueorder")
 				{
 					*currentgamestate = GameState::IssueOrders;
+					//Sending command to log file
+					Subject::Notify("Current Game State: OrderIssued");
 				}
 				else
 				{
@@ -185,10 +202,14 @@ namespace GameEngine
 				if (*usercommand == "issueorder")
 				{
 					*currentgamestate = GameState::IssueOrders;
+					//Sending command to log file
+					Subject::Notify("Current Game State: OrderIssued");
 				}
 				else if (*usercommand == "endissueorders")
 				{
 					*currentgamestate = GameState::ExecuteOrders;
+					//Sending command to log file
+					Subject::Notify("Current Game State: OrderExecuted");
 				}
 				else
 				{
@@ -199,14 +220,20 @@ namespace GameEngine
 				if (*usercommand == "execorder")
 				{
 					*currentgamestate = GameState::ExecuteOrders;
+					//Sending command to log file
+					Subject::Notify("Current Game State: OrderExecuted");
 				}
 				else if (*usercommand == "endexecorders")
 				{
 					*currentgamestate = GameState::AssignReinforcement;
+					//Sending command to log file
+					Subject::Notify("Current Game State: ReinforcementAssigned");
 				}
 				else if (*usercommand == "win")
 				{
 					*currentgamestate = GameState::Win;
+					//Sending command to log file
+					Subject::Notify("Current Game State: Win!");
 				}
 				else
 				{
@@ -217,6 +244,8 @@ namespace GameEngine
 				if (*usercommand == "play")
 				{
 					*currentgamestate = GameState::Start;
+					//Sending command to log file
+					Subject::Notify("Current Game State: Start");
 				}
 				else if (*usercommand == "end")
 				{
@@ -476,5 +505,10 @@ namespace GameEngine
         issueOrdersPhase();
         executeOrdersPhase();
     }
+
+	void GameEngine::stringToLog(string s)
+	{
+		stringsToLog = s;
+	}
 
 }

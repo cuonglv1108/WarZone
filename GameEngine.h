@@ -62,6 +62,7 @@ namespace GameEngine
 
             //orders are executed
             void executeOrdersPhase();
+			void stringToLog(string s);
 
 		private:
 			string* usercommand;		//will store the command that is input
@@ -69,9 +70,8 @@ namespace GameEngine
 			Map* map; //Stores the map of the game
 			vector<Player*> players; //Stores the players participating in the game
 			Deck* deck;
+			string stringsToLog;
 
-
-
-    };
+	};
 
 }

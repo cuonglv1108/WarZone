@@ -6,14 +6,14 @@
 using namespace std;
 
 
-// -------------------------------------------- Command --------------------------------------------  //
+//// -------------------------------------------- Command --------------------------------------------  //
 //void Command::stringToLog(string s)
 //{
 //	stringsToLog = s;
 //}
-
-
-// -------------------------------------------- Command Processor --------------------------------------------  //
+//
+//
+//// -------------------------------------------- Command Processor --------------------------------------------  //
 //CommandProcessor::CommandProcessor()
 //{
 //
@@ -55,10 +55,10 @@ LogObserver::~LogObserver()
 
 void LogObserver::update(string s)
 {
-	cout << "updating file";
+	cout << "Updating file..." << endl;
 	//Creating file stream
 	ofstream myFile;
-	myFile.open("GameLog.txt");
+	myFile.open("GameLog.txt", ofstream::app);
 
 //	For ever string that needs to be logged:
 //	for(int i = 0; i < stringsToLog.size(); i++)
