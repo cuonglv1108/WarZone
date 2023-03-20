@@ -456,16 +456,18 @@ namespace GameEngine
     //game play loop once the game has started
     void GameEngine::mainGameloop()
     {
+        int total = map->getNumOfTerritories();
         //iterate through players
         for(int y = 0; y < players.size(); y++)
         {
             int t = players[y]->getNoTerritories();
-            if (t = 0) //if player has no territories owned then they are eliminated from the game
+            if (t <= 0) //if player has no territories owned then they are eliminated from the game
             {
                 players[y]->~Player();
             }
-            if (t = 20) //if player owns all territories then the game is won and over
+            if (t >= total) //if player owns all territories then the game is won and over
             {
+                cout << "Game Over. " << players[y]->getName() << " has won." << endl;
                 return;
             }
         }
