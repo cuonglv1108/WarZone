@@ -10,7 +10,7 @@ using namespace std;
 
 namespace CommandProcessing
 {
-	class Command
+	class Command: ILoggable, Subject
 	{
 		public:
 			//constructors
@@ -30,12 +30,16 @@ namespace CommandProcessing
 			string getEffect();
 			string getTitle();
 
+
+			void stringToLog(string s);
+
 		private:
+			string stringsToLog;
 			string* commandname;
 			string* commandeffect;
 	};
 
-	class CommandProcessor
+	class CommandProcessor: ILoggable, Subject
 	{
 		public:
 			//constructors
@@ -53,6 +57,9 @@ namespace CommandProcessing
 			virtual void getCommand();
 			void setGameState(string a);
 
+
+			void stringToLog(string s);
+
 		protected:
 			string userinput;
 			void saveCommand(Command commandobj);
@@ -62,6 +69,7 @@ namespace CommandProcessing
 			string* currentgamestate;
 
 		private:
+			string stringsToLog;
 			virtual void readCommand();
 			void changeState(string s);
 			list<Command> lc;

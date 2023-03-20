@@ -51,23 +51,23 @@ class LogObserver: Observer
 		static void update(string s);
 };
 
-class Command: ILoggable, Subject
-{
-	private:
-		string stringsToLog;
-
-	public:
-		void saveEffect();
-		void stringToLog(string s);
-};
-
-class CommandProcessor: ILoggable, Subject
-{
-	private:
-		string stringsToLog;
-	public:
-		CommandProcessor();
-		void stringToLog(string s);
-
-};
+//class Command: ILoggable, Subject
+//{
+//	private:
+//		string stringsToLog;
+//
+//	public:
+//		void saveEffect();
+//		void stringToLog(string s);
+//};
+//
+//class CommandProcessor: ILoggable, Subject
+//{
+//	private:
+//		string stringsToLog;
+//	public:
+//		CommandProcessor();
+//		void stringToLog(string s);
+//
+//};
 #endif

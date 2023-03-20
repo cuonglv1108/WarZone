@@ -7,23 +7,23 @@ using namespace std;
 
 
 // -------------------------------------------- Command --------------------------------------------  //
-void Command::stringToLog(string s)
-{
-	stringsToLog = s;
-}
+//void Command::stringToLog(string s)
+//{
+//	stringsToLog = s;
+//}
 
 
 // -------------------------------------------- Command Processor --------------------------------------------  //
-CommandProcessor::CommandProcessor()
-{
-
-}
-
-
-void CommandProcessor::stringToLog(string s)
-{
-	stringsToLog = s;
-}
+//CommandProcessor::CommandProcessor()
+//{
+//
+//}
+//
+//
+//void CommandProcessor::stringToLog(string s)
+//{
+//	stringsToLog = s;
+//}
 
 
 

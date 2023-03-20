@@ -81,6 +81,11 @@ string Command::getTitle()
 	return *commandname;
 }
 
+void Command::stringToLog(string s)
+{
+	stringsToLog = s;
+}
+
 //==================CommandProcessor==================
 //Constructors
 CommandProcessor::CommandProcessor()
@@ -325,6 +330,11 @@ void CommandProcessor::printList()
 	}
 }
 
+
+void CommandProcessor::stringToLog(string s)
+{
+	stringsToLog = s;
+}
 
 
 
