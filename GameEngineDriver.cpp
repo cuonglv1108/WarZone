@@ -15,6 +15,7 @@ int main()
 		//ge.checkCommand();
 		//ge.cleanUserCommand();
 		ge.startupPhase();
+        ge.mainGameloop();
 
 		//GameEngine::GameEngine::cleanUserCommand();
 	}
