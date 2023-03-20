@@ -21,8 +21,8 @@ using namespace std;
         ~Player();
         Player& operator=(const Player& other);
 
-        void toDefend();
-        void toAttack();
+        vector<Territory *> toDefend();
+        vector<Territory *> toAttack();
         void issueOrder();
         void printOrderList();
         void printHand();
@@ -32,6 +32,10 @@ using namespace std;
         vector<Card*> getHand();
         void addCardToHand(Card* card);
         string getName();
+        int getArmies();
+        int getNoTerritories();
+        vector<Territory*> getTerritories();
+        vector<Order*> getOrderList();
 
 
     private:

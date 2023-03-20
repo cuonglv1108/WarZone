@@ -59,30 +59,35 @@ using namespace std;
         orderList.clear();
     }
 
-    void Player::toDefend() //returns list of territories to be defended
+    vector<Territory *> Player::toDefend() //returns list of territories to be defended
     {
         for (int i = 0; i < territories.size(); i++)
         {
             cout << territories[i]->getTerritory_name() << endl;
         }
+        return territories;
     }
 
-    void Player::toAttack() //returns arbitrary list of territories to be attacked
+    vector<Territory *> Player::toAttack() //returns arbitrary list of territories to be attacked
     {
-        vector<string*> tAttack;
-        string ta1 = "Belgium";
-        string ta2 = "Norway";
-        tAttack.push_back(&ta1);
-        tAttack.push_back(&ta2);
+        vector<Territory*> tAttack;
+        Territory *dt1 = new Territory(3, "Belgium", 1, 0);
+        Territory *dt2 = new Territory(4, "Norway", 1, 0);
+        tAttack.push_back(dt1);
+        tAttack.push_back(dt2);
+
 
         for (int i = 0; i < tAttack.size(); i++)
         {
-            cout << *tAttack[i] << "" << endl;
+            cout << tAttack[i] << "" << endl;
         }
+        return tAttack;
     }
 
     void Player::issueOrder() //adds new order to the orderList
     {
+        vector<Territory*> td = toDefend();
+        vector<Territory*> ta = toAttack();
         Order *o = new Order();
         orderList.push_back(o);
     }
@@ -135,4 +140,30 @@ using namespace std;
 	{
 		return name;
 	}
+
+    int Player::getArmies()
+    {
+        return reinforcementPool;
+    }
+
+    int Player::getNoTerritories() {
+
+        int length;
+        for (Territory *element: territories)
+        {
+            length++;
+        }
+        return length;
+    }
+
+    vector<Territory*> Player::getTerritories()
+    {
+
+        return territories;
+    }
+
+    vector<Order*> Player::getOrderList()
+    {
+        return orderList;
+    }
 

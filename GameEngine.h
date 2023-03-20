@@ -51,6 +51,11 @@ namespace GameEngine
 			//by allowing the user to proceed with the game startup phase
 			void startupPhase();
 
+            void mainGameloop();
+            void reinforcementPhase();
+            void issueOrdersPhase();
+            void executeOrdersPhase();
+
 		private:
 			string* usercommand;		//will store the command that is input
 			GameState* currentgamestate;	//stores the current state of the game
@@ -58,6 +63,8 @@ namespace GameEngine
 			vector<Player*> players; //Stores the players participating in the game
 			Deck* deck;
 
-	};
+
+
+    };
 
 }

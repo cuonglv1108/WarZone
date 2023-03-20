@@ -381,4 +381,76 @@ namespace GameEngine
 
 	}
 
+    void GameEngine::reinforcementPhase()
+    {
+        for(int y = 0; y < players.size(); y++)
+        {
+            int eu;
+            int na;
+            vector<Territory*> t = players[y]->getTerritories();
+            for (int i = 0; i < t.size(); i++)
+            {
+                if (t[i]->getContinent_id() == 1)
+                    eu++;
+                else if (t[i]->getContinent_id() == 2)
+                    na++;
+            }
+            if (eu >= 10)
+            {
+                int a = floor((players[y]->getTerritories()) / 3);
+                players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 6);
+            }
+            else if (na >= 10)
+            {
+                int a = floor((players[y]->getTerritories()) / 3);
+                players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 3);
+            }
+            else
+            {
+                int a = floor((players[y]->getTerritories()) / 3);
+                players[y]->updateReinforcementPool((players[y]->getArmies()) + a);
+            }
+        }
+    }
+
+    void GameEngine::issueOrdersPhase()
+    {
+        for(int y = 0; y < players.size(); y++)
+        {
+            players[y]->issueOrder();
+        }
+    }
+
+    void GameEngine::executeOrdersPhase()
+    {
+        for(int y = 0; y < players.size(); y++)
+        {
+            vector<Order*> ol = players[y]->getOrderList();
+            for (int i = 0; i < ol.size(); ++i)
+            {
+                Order o = *ol[i];
+                o.execute();
+            }
+        }
+    }
+
+    void GameEngine::mainGameloop()
+    {
+        for(int y = 0; y < players.size(); y++)
+        {
+            int t = players[y]->getNoTerritories();
+            if (t = 0)
+            {
+                players[y]->~Player();
+            }
+            if (t = 20)
+            {
+                return;
+            }
+        }
+        reinforcementPhase();
+        issueOrdersPhase();
+        executeOrdersPhase();
+    }
+
 }

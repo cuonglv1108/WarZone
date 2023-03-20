@@ -3,11 +3,11 @@
 int main() //main method of driver to display functionality of Player being implemented
 {
     //Arbitrary list of territories being added (to display toDefend method functionality)
-    vector<string*> t1;
-    string dt1 = "France";
-    string dt2 = "Germany";
-    t1.push_back(&dt1);
-    t1.push_back(&dt2);
+    vector<Territory*> t1;
+    Territory *dt1 = new Territory(1, "France", 1, 0);
+    Territory *dt2 = new Territory(2, "Germany", 1, 0);
+    t1.push_back(dt1);
+    t1.push_back(dt2);
 
     //Arbitrary list of cards being added to the hand
     vector<Card*> h1;
