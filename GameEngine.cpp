@@ -399,13 +399,13 @@ namespace GameEngine
                         na++;
                 }
                 if (eu >= 10) { //player controls all of europe then add europe bonus value to formula computing how many armies to add to their pool
-                    int a = floor((players[y]->getTerritories()) / 3);
+                    int a = floor((players[y]->getNoTerritories()) / 3);
                     players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 6);
                 } else if (na >= 10) { //player controls all of north america then add its bonus value to formula
-                    int a = floor((players[y]->getTerritories()) / 3);
+                    int a = floor((players[y]->getNoTerritories()) / 3);
                     players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 3);
                 } else { //otherwise, proceed with regular formula: no of territories owned divided by 3, rounded down
-                    int a = floor((players[y]->getTerritories()) / 3);
+                    int a = floor((players[y]->getNoTerritories()) / 3);
                     players[y]->updateReinforcementPool((players[y]->getArmies()) + a);
                 }
             }
