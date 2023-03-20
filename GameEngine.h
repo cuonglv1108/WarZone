@@ -51,9 +51,16 @@ namespace GameEngine
 			//by allowing the user to proceed with the game startup phase
 			void startupPhase();
 
+            //game play loop that calls the following three methods
             void mainGameloop();
+
+            //players are given a calculated number of armies
             void reinforcementPhase();
+
+            //players issue orders
             void issueOrdersPhase();
+
+            //orders are executed
             void executeOrdersPhase();
 
 		private:

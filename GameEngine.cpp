@@ -383,25 +383,28 @@ namespace GameEngine
 
     void GameEngine::reinforcementPhase()
     {
+
+        // ---------------------------------------- AssignReinforcement ---------------------------------------- //
+
         if(*usercommand == "assigncountries")
         {
-            for (int y = 0; y < players.size(); y++) {
+            for (int y = 0; y < players.size(); y++) { //iterate through players
                 int eu;
                 int na;
-                vector<Territory *> t = players[y]->getTerritories();
+                vector<Territory *> t = players[y]->getTerritories(); //list of player's owned territories
                 for (int i = 0; i < t.size(); i++) {
-                    if (t[i]->getContinent_id() == 1)
+                    if (t[i]->getContinent_id() == 1)  //territory is in europe then increment europe count
                         eu++;
-                    else if (t[i]->getContinent_id() == 2)
+                    else if (t[i]->getContinent_id() == 2) //territory is in north america then increement na count
                         na++;
                 }
-                if (eu >= 10) {
+                if (eu >= 10) { //player controls all of europe then add europe bonus value to formula computing how many armies to add to their pool
                     int a = floor((players[y]->getTerritories()) / 3);
                     players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 6);
-                } else if (na >= 10) {
+                } else if (na >= 10) { //player controls all of north america then add its bonus value to formula
                     int a = floor((players[y]->getTerritories()) / 3);
                     players[y]->updateReinforcementPool((players[y]->getArmies()) + a + 3);
-                } else {
+                } else { //otherwise, proceed with regular formula: no of territories owned divided by 3, rounded down
                     int a = floor((players[y]->getTerritories()) / 3);
                     players[y]->updateReinforcementPool((players[y]->getArmies()) + a);
                 }
@@ -411,8 +414,10 @@ namespace GameEngine
 
     void GameEngine::issueOrdersPhase()
     {
+        // ---------------------------------------- IssueOrders ---------------------------------------- //
         if(*usercommand == "issueorder")
         {
+            //iterate through players and have them issue orders to add to their orderlist
             for (int y = 0; y < players.size(); y++) {
                 players[y]->issueOrder();
             }
@@ -421,8 +426,10 @@ namespace GameEngine
 
     void GameEngine::executeOrdersPhase()
     {
+        // ---------------------------------------- ExecuteOrders ---------------------------------------- //
         if(*usercommand == "execorder")
         {
+            //iterate through players and retrieve that player's orderlist and execute its orders
             for (int y = 0; y < players.size(); y++) {
                 vector<Order *> ol = players[y]->getOrderList();
                 for (int i = 0; i < ol.size(); ++i) {
@@ -433,20 +440,23 @@ namespace GameEngine
         }
     }
 
+    //game play loop once the game has started
     void GameEngine::mainGameloop()
     {
+        //iterate through players
         for(int y = 0; y < players.size(); y++)
         {
             int t = players[y]->getNoTerritories();
-            if (t = 0)
+            if (t = 0) //if player has no territories owned then they are eliminated from the game
             {
                 players[y]->~Player();
             }
-            if (t = 20)
+            if (t = 20) //if player owns all territories then the game is won and over
             {
                 return;
             }
         }
+        //otherwise there is no reason to break from game and loop will follow the three main phases
         reinforcementPhase();
         issueOrdersPhase();
         executeOrdersPhase();
